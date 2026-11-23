@@ -1,0 +1,145 @@
+# Seven-week program: one day per week, four hours (240 minutes) per day.
+# Maps the progressive practice bank (section 1.5, phases 1-5) onto weeks 1-7,
+# ending with the 240-minute certification exam (section 2.4).
+
+defaults:
+  day_minutes: 240
+  timeblocks:
+    - {minutes: 15, label: "Welkom en veiligheidscheck"}
+    - {minutes: 45, label: "Directe instructie (Template A)"}
+    - {minutes: 25, label: "Gecoachte praktijk (Template B, deel 1)", break: false}
+    - {minutes: 10, label: "Pauze"}
+    - {minutes: 100, label: "Zelfstandige praktijk (Template B, deel 2)"}
+    - {minutes: 25, label: "Reflectie en beoordeling (Template D) + afsluitprocedure"}
+  info_sheets:
+    - "Informatieblad: Veilig opstarten en afsluiten"
+    - "Informatieblad: Handmatig verplaatsen (joggen en Hand guiding)"
+
+weeks:
+  - number: 1
+    theme: "Veiligheid, opbouw en handmatige bediening"
+    phase: 1
+    level: 3
+    learning_objective: "De student zet de cobot veilig op en af en beweegt de arm handmatig naar een aangegeven positie."
+    topics:
+      - "Robot vs. cobot; vijf vaste hoofdcomponenten"
+      - "Veiligheidsnormen (ISO 10218-1/2:2025) en de vier samenwerkingsvormen"
+      - "Noodstop vs. Protective Stop; vijf beschermingslagen"
+      - "Gewrichten J1 t/m J6 en X/Y/Z; joggen en Hand guiding"
+    assignments:
+      - "C1.1 Veilig in- en uitschakelen volgens vaste procedure"
+      - "C1.2 Elk gewricht J1 t/m J6 afzonderlijk verkennen (Joint jogging)"
+      - "C1.3 Cartesisch joggen langs X, Y en Z"
+      - "C1.4 Hand guiding: de arm naar een markering op tafel bewegen"
+      - "C1.5 Losse waypoints opslaan met een pointerpen"
+    exam_link: "Theorie: systeemcomponenten, veilig op- en afsluiten, samenwerkingsvormen, risicoanalyse."
+
+  - number: 2
+    theme: "Bewegingsprincipes en bewegingsopdrachten"
+    phase: 2
+    level: 3
+    learning_objective: "De student past MoveJ, MoveL en MoveC gericht toe en herkent het effect van blending en singulariteit."
+    topics:
+      - "MoveJ vs. MoveL vs. MoveC (Move Joint, Move Line, Move Circle)"
+      - "Snelheid, versnelling en Blending"
+      - "Singulariteit bij lineaire bewegingen"
+      - "Wisselen tussen MoveJ en MoveL op het juiste moment"
+    assignments:
+      - "C2.1 Een rechte lijn tekenen met MoveL"
+      - "C2.2 Een vierkant als doorlopend bewegingssporen traceren"
+      - "C2.3 Een cirkel tekenen met MoveC"
+      - "C2.4 Snelle MoveJ-verplaatsingen combineren met nauwkeurige MoveL-aanritten"
+      - "C2.5 Beweging gladstrijken met Blending"
+    exam_link: "Theorie: bewegingssturing en handbediening (MoveJ/MoveL/MoveC, blending, singulariteit)."
+
+  - number: 3
+    theme: "Grijpen en repetitieve productielogica"
+    phase: 3
+    level: 3
+    learning_objective: "De student bouwt een stabiele pick-and-place-cyclus met grijper en Repeat-lus."
+    topics:
+      - "Standaard pick-and-place-traject (Home, Approach, Pick, Retreat, Place)"
+      - "Grijpers: tweedrievingers, vacuüm, magnetisch"
+      - "Repeat/lus met teller; anti-cyclisch ontwerpen"
+      - "TCP en payload correct kalibreren (Smart Setup)"
+    assignments:
+      - "C3.1 Enkele pick-and-place"
+      - "C3.2 Producten naar meerdere afzetpunten met aan- en terugrijpunten"
+      - "C3.3 Repeat-lus voor tien cycli"
+      - "C3.4 Vijf blokken stapelen via Z-offset"
+    exam_link: "Theorie: kinematica en coördinaten (J1-J6, X/Y/Z, TCP, payload, Base/Tool/User frame)."
+
+  - number: 4
+    theme: "Rasters, crate-vulling en palletiseren"
+    phase: 3
+    level: "3-4"
+    learning_objective: "De student vult een raster en een minipallet met matte offsets in X, Y en Z."
+    topics:
+      - "Matrixlogica: rijen en kolommen over X en Y"
+      - "Palletiseren: laag over X/Y, daarna Z-stap per laag"
+      - "Subroutines voor grijpen en loslaten"
+      - "Cyclus tijd bewust versnellen zonder veiligheid te verliezen"
+    assignments:
+      - "C4.1 Een krat vullen met twaalf flessen in rijen en kolommen (X en Y)"
+      - "C4.2 Meerlaags palletiseren"
+    exam_link: "Praktijkcase 2 (palletiseren) en 3 (crate-vulling): verplichte kernelementen."
+
+  - number: 5
+    theme: "Ruimtelijk inzicht en coördinaatframes"
+    phase: 4
+    level: 4
+    learning_objective: "De student past Tool frame en User frame toe op mechanische uitdagingen."
+    topics:
+      - "Rotaties Rx, Ry en Rz in de praktijk"
+      - "Tool frame bij werk langs een hoek"
+      - "User frame bij een schuin of scheef geplaatst blad"
+      - "Singulariteit managen achter een obstakel"
+    assignments:
+      - "C5.1 Flesdop losdraaien (rotatie via J6/Rz)"
+      - "C5.2 Water van het ene glas in het andere schenken (kantelen via Rx/Ry)"
+      - "C5.3 Pennetje in een schuin gat steken (Tool frame)"
+      - "C5.4 Werken op een scheef geplaatst blad (User frame)"
+      - "C5.5 Achter een obstakel reiken met singulariteitsmanagement"
+    exam_link: "Praktijkcase 5 (precisie-assemblage) en 6 (schuin vlak); theorie L4: coördinaattransformaties."
+
+  - number: 6
+    theme: "I/O, integratie en troubleshooting"
+    phase: 5
+    level: 4
+    learning_objective: "De student koppelt externe signalen, programma's modulair en lost een storing systematisch op."
+    topics:
+      - "24V DC I/O: ingangen, uitgangen, Flange I/O vs. Controller I/O"
+      - "Wait/If-Else met sensoren en drukknoppen"
+      - "Handshaking met een machine (machine tending)"
+      - "Systematisch storingzoeken op basis van I O-monitor en foutenlog"
+      - "DRL/Python: visueel programma naar tekstcode"
+    assignments:
+      - "C6.1 Taken starten en pauzeren via drukknoppen (Input + If)"
+      - "C6.2 Een statuslamp schakelen (Output)"
+      - "C6.3 Sensorgetriggerde wachttijd (Wait)"
+      - "C6.4 Kleuren sorteren met sensor of camera (If/Else)"
+      - "C6.5 Modulair programmeren met grijp- en loslaat-subroutines"
+      - "C6.6 Rommelige code opruimen en herstructureren"
+      - "C6.7 Zwaar werkstuk kalibreren (payload)"
+      - "C6.8 Systematisch troubleshooten na een stop"
+      - "C6.9 Snelheid verlagen via veiligheidszones"
+      - "C6.10 Machine tending met handshaking"
+      - "C6.11 Taak omzetten naar tekstcode (DRL/Python)"
+    exam_link: "Theorie L4: connectiviteit, protocollen, foutafhandeling; examinonderdeel 2 (Find the Error)."
+
+  - number: 7
+    theme: "Certificeringsexamen (4 uur, 240 minuten)"
+    phase: exam
+    level: "3-4"
+    learning_objective: "De kandidaat doorloopt het volledige certificeringsexamen: theorie, storing zoeken en praktijkcase."
+    exam:
+      components:
+        - {name: "Theorie-examen", minutes: 30}
+        - {name: "Find the Error / storingzoeken", minutes: "20-30"}
+        - {name: "Praktijkcase-examen", minutes: 180, note: "Eén van de zeven caseprofielen wordt lootsgewijs toegewezen."}
+    assignments:
+      - "C7.1 Examenvoorbereiding: samenvatting theoriedomeinen"
+      - "C7.2 Droogoefening Find the Error met de vier foutklassen"
+    exam_link: "Volledig examenblueprint inclusief knock-outcriteria en rubric (Track 2, sectie 2.4)."
+
+second_brand_note: "Kernopdracht uitvoeren op een tweede cobottomark hoort bij fase 5 en kan als extra week of als keuzeopdracht in week 7 worden ingepland zodra een tweede machine-sub-module is geregistreerd."

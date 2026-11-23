@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="utf-8">
+  <title>Cobot Course Composer</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <header class="topbar">
+    <span class="brand">Cobot Course Composer</span>
+    <span class="sub">{{ style.identity.module_title }} — {{ style.identity.institution }} ({{ style.meta.status }})</span>
+  </header>
+
+  <main class="page">
+    <h1>Leermateriaal samenstellen</h1>
+    <p class="lead">Zeven weken, één lesdag per week van vier uur. Kies een week; de app combineert de drie tracks (techniek, NLQF-pedagogiek, huisstijl) tot klaar-om-te-gebruiken materiaal.</p>
+
+    <form action="/compose" method="post" class="card">
+      <label for="week">Week</label>
+      <select id="week" name="week" required>
+        {% for w in weeks %}
+        <option value="{{ w.number }}">Week {{ w.number }} — {{ w.theme }} (NLQF {{ w.level }})</option>
+        {% endfor %}
+      </select>
+
+      <label for="level">Niveau</label>
+      <select id="level" name="level">
+        <option value="NLQF 3">NLQF 3 — Zelfstandig cobottechnicus</option>
+        <option value="NLQF 4">NLQF 4 — Cobot Integrator &amp; Programmer</option>
+      </select>
+
+      <label for="machine_id">Machine-sub-module (Track 1, vervangbaar)</label>
+      <select id="machine_id" name="machine_id">
+        {% for m in machines %}
+        <option value="{{ m.id }}" {% if m.active %}selected{% endif %}>{{ m.model }} — {{ m.institution }}{% if not m.active %} (inactief){% endif %}</option>
+        {% endfor %}
+      </select>
+
+      <label for="case_profile">Praktijkcase (optioneel, met name week 4, 5 en 7)</label>
+      <select id="case_profile" name="case_profile">
+        <option value="0">— geen specifieke case —</option>
+        <option value="1">1 — Machine Tending</option>
+        <option value="2">2 — Multi-Layer Palletizing</option>
+        <option value="3">3 — Crate Filling and Buffering</option>
+        <option value="4">4 — Sensor-Driven Sorting</option>
+        <option value="5">5 — Precision Assembly and Placement</option>
+        <option value="6">6 — Working on an Angled Plane</option>
+        <option value="7">7 — Process Optimization and Redesign</option>
+      </select>
+
+      <button type="submit">Materiaal genereren</button>
+    </form>
+
+    <section class="weeks">
+      <h2>Het zevenwekenprogramma</h2>
+      <table>
+        <thead><tr><th>Week</th><th>Fase</th><th>Thema</th><th>Niveau</th></tr></thead>
+        <tbody>
+        {% for w in weeks %}
+          <tr><td>{{ w.number }}</td><td>{{ w.phase }}</td><td>{{ w.theme }}</td><td>NLQF {{ w.level }}</td></tr>
+        {% endfor %}
+        </tbody>
+      </table>
+    </section>
+  </main>
+
+  <footer class="footer">Cobot Course Composer · v0.1 materiaal volgens Track 3-basisstijl (SMEOT-draft)</footer>
+</body>
+</html>

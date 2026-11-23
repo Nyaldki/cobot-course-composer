@@ -1,0 +1,131 @@
+# TRACK 1 (universal part): Technical ground truth — brand-independent cobot core.
+# Mirrors Sections 1.2 and 1.3 of the Central Knowledge Base.
+# NEVER change this file when switching robot brands; swap the machine sub-module instead.
+
+meta:
+  id: track1_core
+  name: "Universal Cobot Core"
+  version: "1.0"
+  immutable: true
+  source: "Central Knowledge Base, sections 1.2 & 1.3"
+
+components:
+  - robot_arm: "Six rotating joints (J1-J6), brushless DC motors, low-backlash harmonic drive gearboxes, integrated joint torque sensors."
+  - controller: "Computational brain and power enclosure; external inputs and outputs converge here."
+  - teach_pendant: "Control interface screen used to jog, configure, and program the robot."
+  - tool_flange: "Mounting point for the end effector (gripper, torch, screwdriver, marker)."
+  - emergency_stop: "Accessible red button that immediately cuts drive power and halts all motion."
+
+kinematics:
+  joints:
+    J1: "Base rotation around the vertical axis (left/right)."
+    J2: "Shoulder — moves the lower arm forward/backward/up/down."
+    J3: "Elbow — bends the forearm."
+    J4: "Wrist 1 — tilt."
+    J5: "Wrist 2 — swivel."
+    J6: "Wrist 3 — tool spins around its own longitudinal axis."
+  cartesian: {X: "forward/backward", Y: "sideways left/right", Z: "up (+Z) / down (-Z)"}
+  rotations: {Rx: "around X", Ry: "around Y", Rz: "around Z"}
+  tcp: "Tool Center Point — the actual working tip of the mounted tool; every move command targets the TCP."
+  payload: "Total mass attached to the flange (tool + workpiece); wrong payload or Center of Gravity causes collision stops."
+  frames:
+    base: "Originates at the foot of the robot; default reference (linked to World frame)."
+    tool: "Originates at the TCP; moves and tilts with the tool; essential for straight motion along angled pins or drills."
+    user: "Defined by the user on a worktable, fixture, or angled tray; enables straight rows/columns relative to the workpiece."
+
+safety:
+  standards:
+    - "ISO 10218-1:2025 (requirements for robots)"
+    - "ISO 10218-2:2025 (requirements for robot systems and integration)"
+    - "Incorporates the former ISO/TS 15066:2016 guidelines"
+  principle: "A cobot is never inherently safe on its own; a risk assessment must cover arm, tooling, workpiece, process, and human proximity."
+  collaboration_modes:
+    - {name: "Safety-rated Monitored Stop", nl: "Veiligheidstoegestane bewaakte stop", desc: "Robot stops controlled when a person enters the shared workspace; resumes when clear."}
+    - {name: "Hand Guiding", nl: "Handgeleide beweging", desc: "Operator moves the arm by hand via an enabling switch with strictly limited speed and force."}
+    - {name: "Speed and Separation Monitoring", nl: "Snelheids- en afstandscontrole", desc: "Sensors continuously measure distance to personnel; robot slows down on approach, stops before contact."}
+    - {name: "Power and Force Limiting", nl: "Kracht- en vermogensbegrenzing", desc: "Robot restricts forces, torques, and speeds so contact stays below biomechanical pain thresholds."}
+  protection_layers:
+    - "Preconfigured limits for speed, force, and reach"
+    - "Active collision detection triggering a Protective Stop"
+    - "Virtual safety zones and safety planes (invisible walls)"
+    - "Physical emergency stop button"
+    - "Password protection on safety parameters"
+  workshop_rules:
+    - "Visually inspect the workspace before every startup."
+    - "Test the emergency stop before engaging motor power."
+    - "Secure loose clothing and long hair; keep fingers clear of grippers and pinch points."
+    - "Simulate new programs first, then test at low speed with a hand near the emergency stop."
+    - "Never pull the plug while running; always shut down via Home position, Servo Off, and the pendant's shutdown procedure."
+
+motion:
+  manual:
+    jogging: "Move individual joints or X/Y/Z via plus/minus buttons; moves only while held; safest way to recover from awkward postures."
+    hand_guiding: "Hold the enabling button and physically push the arm; ideal for large movements through open space."
+  commands:
+    - {name: "MoveJ", full: "Move Joint", nl: "Alle gewrichten bewegen tegelijk naar doelstanden; gebogen pad door de open ruimte; geen singulariteitsrisico."}
+    - {name: "MoveL", full: "Move Line", nl: "TCP volgt een exact rechte lijn; verplicht voor nauwkeurige aanrijdingen en recht omlaag naar een pickpunt."}
+    - {name: "MoveC", full: "Move Circle", nl: "TCP volgt een cirkelboog gedefinieerd door een tussenpunt en een eindpunt."}
+  parameters:
+    speed: "Movement speed scaling."
+    acceleration: "Ramp-up of velocity."
+    blending: "Cuts a smooth arc past a waypoint instead of a full stop; ALWAYS disabled (radius 0) at exact pick/place points."
+  singularity: "When joint axes align or the arm is fully outstretched, a linear move has no smooth solution and the robot halts; avoid stretched postures or switch to Move Joint."
+
+program_structure:
+  standard_pick_place: "Home -> MoveJ naar Approach -> MoveL zonder blending naar Pick -> grijper sluit + korte wachttijd -> MoveL Retreat -> MoveJ boven Place -> MoveL naar Place -> grijper opent -> MoveL terug -> Home."
+  anticyclic: "Design the trajectory backward from the most critical point to the approach point to rule out collisions in tight workspaces."
+  levels:
+    - "Visual blocks on the teach pendant (entry level)"
+    - "Hand guiding waypoint recording"
+    - "Textual code (native scripting or Python)"
+    - "Offline 3D simulation / digital twin (validates reachability, collisions, cycle time)"
+  building_blocks:
+    - {name: Move, nl: "Naar een waypoint bewegen"}
+    - {name: Wait, nl: "Pauzeren voor een vaste tijd of tot een extern signaal"}
+    - {name: "Repeat/Loop", nl: "Stappen herhalen met een teller of voorwaarde"}
+    - {name: "If/Else", nl: "Beslissen op basis van sensoren of variabelen"}
+    - {name: Subroutine, nl: "Hergebruikbare, benoemde deeltaken (grijp/release)"}
+    - {name: Output, nl: "Grijpers, lampen of machines aan/uit schakelen"}
+  craft:
+    - "One project folder per assignment; descriptive names for tasks and subroutines."
+    - "Named waypoints: Above_Pick, Pick, Above_Place, Place, Home."
+    - "Header with author, date, purpose; save clean versions throughout."
+    - "Advanced: active error handling, e.g. verify gripper feedback before continuing."
+
+applications:
+  stacking: "Z-offset per cycle by exact product height."
+  crate_filling: "Rows/columns across X and Y."
+  palletizing: "Fill a layer across X and Y, then step up in Z by one layer height."
+  grippers:
+    two_three_finger: "Rigid blocks, shafts, tubes."
+    vacuum: "Flat sheets, glass, boxes."
+    magnetic: "Ferromagnetic steel components."
+
+io_connectivity:
+  voltage: "24V DC"
+  input: "Signal the robot reads (push button, limit switch, sensor)."
+  output: "Signal the robot sends (gripper, lamp, machine)."
+  digital: "Two states: ON/1 or OFF/0."
+  analog: "Continuous measured value (mm, weight, pressure)."
+  flange_io: "Grippers and compact wrist sensors connect at the end of the arm."
+  controller_io: "External push buttons, safety sensors, machine interfaces."
+  handshaking: "Machine signals cycle complete -> robot swaps workpiece -> robot returns start signal."
+  networks: ["Modbus", "Profinet", "Python", "ROS"]
+
+troubleshooting:
+  stops_not_always_faults: "A stop often means the system is doing its safety job."
+  common_causes:
+    - "Physical collision"
+    - "Incorrect tool weight or Center of Gravity"
+    - "Speed limit exceeded"
+    - "Virtual safety zone breached"
+    - "Unreachable waypoint"
+    - "Singularity"
+    - "Missing I/O signal causing a Wait block to hang"
+  discipline:
+    - "1. Check whether anyone is trapped or injured."
+    - "2. Read the exact error message; inspect the live I/O monitor or fault logs; never blindly delete code."
+    - "3. Verify wiring, sensors, and settings (multimeter, calipers if needed)."
+    - "4. Remove the root cause."
+    - "5. Reset and restart in a controlled manner."
+  preventive: "Visual checks for cable wear, loose flange bolts, clean sensors; keep maintenance and change logs up to date."

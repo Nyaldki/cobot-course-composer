@@ -1,0 +1,81 @@
+# TRACK 2: Educational blueprint & NLQF qualification framework (sections 2.1 - 2.4).
+
+meta:
+  id: track2_pedagogy
+  name: "Educational Blueprint & NLQF Framework"
+  version: "1.0"
+  immutable: true
+  source: "Central Knowledge Base, Track 2"
+
+scope:
+  active_levels: [3, 4]
+  level3_profile: "Independent Cobot Technician / Robotics Allrounder"
+  level4_profile: "Cobot Integrator & Programmer"
+  future: "NLQF 2 (supervised standard tasks) and NLQF 5 (design complete cells, formal risk assessment, continuous improvement) can be added without redesign."
+  foundation: "Action-oriented learning with managed cognitive load: bounded, visually supported actions first, then independent problem-solving, diagnostics, and industrial integration."
+
+nlqf_matrix:
+  Level 3:
+    context: "Recognizable yet changing environment within own workshop or production cell."
+    knowledge: "Foundational trade facts, cobot components, standard motion types, basic safety, regular operating and programming procedures."
+    applying: "Independently selects and combines standard procedures (e.g. pick-and-place with basic I/O)."
+    problem_solving: "Resolves compound problems methodically using manuals, schematics, and checklists."
+    learning: "Reflects on outcomes; recognizes knowledge boundaries; seeks guidance."
+    information: "Processes targeted trade information from Dutch and straightforward English manuals, briefs, basic schematics."
+    communication: "Communicates per workplace conventions; documents programs neatly; explains system operation."
+    responsibility: "Full responsibility for safe, accurate, complete execution of a bounded task."
+  Level 4:
+    context: "Broader environment: international documentation, standards, less predictable production situations."
+    knowledge: "Broad specialist knowledge: kinematics, coordinate transformations, 24V DC I/O, Modbus/Profinet, error handling, digital twins, safety standards."
+    applying: "Evaluates and integrates technical data; independent approach for compound integration; optimizes cycle times; translates risk assessments into digital safety limits."
+    problem_solving: "Analyzes raw system data, signal monitors, fault logs, measurements; durable root-cause solutions."
+    learning: "Self-directed development via documentation and simulation tools."
+    information: "Selects, interprets, and integrates specialist information from comprehensive manuals, diagrams, datasheets, fault logs."
+    communication: "Instructs operators; hands over complete documentation and maintenance logs; justifies technical choices."
+    responsibility: "Responsible for quality and safety of the entire robot cell; reviews peers; supports senior engineers."
+
+templates:
+  A: {name: "Worked-Out Example & Direct Instruction", nl_name: "Informatieblad / uitgewerkt voorbeeld", target: NLQF 3, purpose: "Low cognitive load; new foundational actions and strict safety procedures.",
+      structure: [titel, meetbaar leerdoel, benodigde hardware en persoonlijke beschermingsmiddelen, verplichte pre-flight veiligheidscheck, genummerde stappen met verificatiecheck per stap, standaard afsluit- en opruimprocedure]}
+  B: {name: "Industrial Practical Case Study", nl_name: "Praktijkopdracht / praktijkcase", target: "NLQF 3-4", purpose: "Independently combine techniques inside a realistic SME/manufacturing setting.",
+      structure: [realistisch industriescenario, opdracht van opdrachtgever/productiechef, harde specificaties en randvoorwaarden, verplichte voorbereiding (werkplan/logica/traject), open uitvoering, kwaliteitsvalidatie]}
+  C: {name: "Inquiry-Based Learning & Troubleshooting Challenge", nl_name: "Storingzoekende opdracht", target: NLQF 4, purpose: "Systematic diagnosis of an intentionally introduced fault.",
+      structure: [feitelijk symptoombeschrijving zonder oplossing, verwijzing naar diagnostische bronnen (foutenlog, I/O-monitor, schema's), hypothese, metingen/loggegevens, herstelactie, reflectie op structurele preventie]}
+  D: {name: "Shop-Floor Assessment Rubric", nl_name: "Beoordelings- en intekenlijst", target: "Instructor", purpose: "Fast objective observation tool on the shop floor.",
+      structure: [absolute knock-outcriteria veiligheid, driepuntsmatrix (1 onvoldoende / 2 voldoende NLQF 3 / 3 excellent NLQF 4), gerichte feedback, formele intekening]}
+
+exam_blueprint:
+  total_minutes: 240
+  components:
+    - {id: theory, name: "Theory examination", minutes: 30,
+       domains: ["robots vs cobots en systeemcomponenten", "veilig op- en afsluiten, ISO 10218-1/2:2025, vier samenwerkingsvormen, noodstop vs Protective Stop, risicoanalyse", "kinematica en coördinaten (J1-J6, X/Y/Z, TCP, payload, Base/Tool/User frame)", "bewegingssturing en handbediening (joggen, handguiding, MoveJ/MoveL/MoveC, blending, singulariteit)", "programmalogica en structuur (Wait, Repeat, If/Else, subroutines, variabelen, netjes programmabeheer)", "connectiviteit en diagnostiek (24V DC digitaal/analoog I/O, sensoren, handshaking, stops systematisch oplossen)"],
+       level4_extra: ["coördinaattransformaties", "foutafhandelingslogica", "digitale simulatie", "industriele communicatieprotocollen"]}
+    - {id: find_error, name: "Find the Error / Troubleshooting", minutes: "20-30",
+       fault_classes: ["hardware- en I/O-fouten", "kalibratie- en instelfouten", "bewegings- en veiligheidsfouten", "logische programmafouten"],
+       grading: "Level 3: methodisch met handleiding en standaardcontroles. Level 4: directe ruwe diagnosegegevens, root cause zonder code verwijderen, fix valideren."}
+    - id: practical
+      name: "Practical case examination"
+      minutes: 180
+      case_profiles:
+        - {nr: 1, name: "Machine Tending", context: "In-/uitladen van gesimuleerde CNC-machine of pers.", elements: "I/O-handshaking (inkomende klaar- en uitgaande startsignaal), veilig in-/uitrijden via MoveL, terug naar Home."}
+        - {nr: 2, name: "Multi-Layer Palletizing", context: "Volledig automatisch stapelen op een mini-pallet over meerdere lagen.", elements: "Repeat-lussen, wiskundige offsets in X/Y/Z, nette subroutines voor grijpen en loslaten, tellen tot pallet vol."}
+        - {nr: 3, name: "Crate Filling and Buffering", context: "Producten verdelen over een raster (rijen en kolommen) met drukknop voor een nieuwe krat.", elements: "Matrixlogica in X en Y, drukknop-ingangen voor start, pauze en kratwissel, statuslamp via digitale uitgang."}
+        - {nr: 4, name: "Sensor-Driven Sorting", context: "Producten scheiden in verschillende afzetzones op basis van sensor- of camerabeeld.", elements: "Live ingang uitlezen, If/Else-vertakking, Wait op productdetectie, betrouwbare cyclusherhaling."}
+        - {nr: 5, name: "Precision Assembly and Placement", context: "Onderdelen oppakken en nauwkeurig monteren of draaien met oriëntatie-eisen.", elements: "Gecontroleerde rotatie en kanteling (Rx, Ry, Rz), MoveJ wisselen met trage MoveL zonder blending, exacte TCP-kalibratie."}
+        - {nr: 6, name: "Working on an Angled Plane", context: "Werkstukken hanteren vanaf een schuin blad of op hoek gemonteerde opspanning.", elements: "Zelfstandig User frame en/of Tool frame definiëren en toepassen, botsvrij aan- en terugrijpunten."}
+        - {nr: 7, name: "Process Optimization and Redesign", context: "Traag, rommelig en foutgevoelig productieprogramma overnemen en herbouwen.", elements: "Naamgeving en subroutines opruimen, verantwoorde blending en snelheidsgrenzen, basisfoutafhandeling en overdrachtsdocumentatie."}
+      shell: [industrieel brief met concrete productspecificaties, beschikbare hardware en randvoorwaarden, verplichte voorbereidingscheck (werkplan en veiligheidsanalyse), functionele einddemonstratie van een doorlopende productiecyclus, mondelinge toelichting op veiligheids- en programmakeuzes]
+  knockout_criteria:
+    - "Werkruimte niet zichtbaar gecontroleerd en vrijgemaakt voor gebruik"
+    - "Noodstop niet geverifieerd vóór het inschakelen van de motorkracht"
+    - "Veiligheidsinstellingen zonder authorisatie omzeild of gewijzigd"
+    - "Niet volgens procedure veilig afgesloten"
+  pass_rules:
+    level3: "Minimaal score 2 op élke competentie."
+    level4: "Score 3 op minimaal drie van de vier competenties (verplicht incl. Programming & Process Logic en Troubleshooting & Diagnostics), en nergens onder score 2."
+
+rubric:
+  - {competency: "Systeemopbouw & kalibratie", "1": "Herhaalde begeleiding nodig; grijper, TCP, payload of bedrading slordig/fout.", "2": "Monteert grijper, bedraadt basis-I/O en kalibreert TCP en payload zelfstandig en nauwkeurig.", "3": "Optimaliseert werkladeling en zwaartepuntinstelling voor ergonomie, bereik en cyclus."}
+  - {competency: "Programmeren & proceslogica", "1": "Programma instabiel; lussen, frames of I/O bevatten fouten.", "2": "Combineert MoveJ/MoveL, lussen en werkende I/O tot een stabiele, veilige cyclus.", "3": "Modulair met nette subroutines, duidelijke naamgeving, bewuste blending en actieve foutafhandeling."}
+  - {competency: "Storingzoeken & diagnostiek", "1": "Raadgedrag; verwijdert programmadelen zonder analyse.", "2": "Vindt en verhelpt de storing binnen de tijd met handleiding en gestructureerde controles.", "3": "Analyseert ruwe data (I/O-monitor, foutenlog, metingen), isoleert de oorzaak gericht en benoemt preventie."}
+  - {competency: "Veiligheid, documentatie & vakmanschap", "1": "Romig werken; kan keuzes niet uitleggen; geen bruikbare overdracht.", "2": "Werkt gedisciplineerd en veilig, gebruikt nette map- en taaknamen, legt werking helder uit.", "3": "Leverd een complete, overdracht-klare cel met nette inline documentatie en onderbouwing richting klant."}
