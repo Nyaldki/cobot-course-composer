@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="utf-8">
+  <title>Week {{ week }} — samengesteld materiaal</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="/static/style.css">
+  <link rel="stylesheet" href="/static/print.css" media="print">
+</head>
+<body>
+  <header class="topbar">
+    <span class="brand">Week {{ week }} · {{ level }} · {{ materials.week_programma.machine.model }}</span>
+    <span class="sub"><a href="/">← terug</a></span>
+  </header>
+
+  <main class="page">
+    <h1>Week {{ week }}: {{ materials.week_programma.week.theme }}</h1>
+
+    <section class="card">
+      <h2>Lesprogramma ({{ materials.week_programma.totaal_minuten }} min)</h2>
+      <table>
+        <thead><tr><th>Duur</th><th>Blok</th></tr></thead>
+        <tbody>
+        {% for b in materials.week_programma.blokkenschema %}
+          <tr><td>{{ b.minutes }}</td><td>{{ b.label }}</td></tr>
+        {% endfor %}
+        </tbody>
+      </table>
+      <p><strong>Machine (Track 1):</strong> {{ materials.week_programma.machine.model }} — {{ materials.week_programma.machine.institution }}</p>
+      <p><strong>Examenkoppeling:</strong> {{ materials.week_programma.week.exam_link }}</p>
+    </section>
+
+    <section class="card">
+      <h2>{{ materials.informatieblad.doctype }}</h2>
+      <h3>{{ materials.informatieblad.titel }}</h3>
+      <p><strong>Leerdoel:</strong> {{ materials.informatieblad.leerdoel }}</p>
+      <h4>Onderwerpen</h4>
+      <ul>{% for t in materials.informatieblad.onderwerpen %}<li>{{ t }}</li>{% endfor %}</ul>
+      <div class="tipbox"><strong>Tip:</strong> {{ materials.informatieblad.tip }}</div>
+      <div class="safetybox"><strong>Veiligheid:</strong> {{ materials.informatieblad.veiligheidskader }} {{ materials.informatieblad.waarschuwing }}</div>
+    </section>
+
+    <section class="card">
+      <h2>{{ materials.praktijkopdracht.doctype }}</h2>
+      <h3>{{ materials.praktijkopdracht.titel }}</h3>
+      <p><strong>Niveau:</strong> {{ materials.praktijkopdracht.niveau }} · <strong>Geschatte duur:</strong> {{ materials.praktijkopdracht.duur_geschat }}</p>
+      <p><strong>Materiaal:</strong> {{ materials.praktijkopdracht.materiaal.machine }} met {{ materials.praktijkopdracht.materiaal.grijper }}; {{ materials.praktijkopdracht.materiaal.drukknoppen }}</p>
+      {% for z in materials.praktijkopdracht.introductie %}<p>{{ z }}</p>{% endfor %}
+      <p class="prepare"><strong>Verplichte voorbereiding:</strong> {{ materials.praktijkopdracht.voorbereiding_verplicht }}</p>
+
+      {% if materials.praktijkopdracht.case_brief %}
+      <div class="tipbox">
+        <strong>{{ materials.praktijkopdracht.case_brief.titel }}</strong><br>
+        {{ materials.praktijkopdracht.case_brief.context }}<br>
+        <em>Verplichte kernelementen:</em> {{ materials.praktijkopdracht.case_brief.verplichte_elementen }}
+      </div>
+      {% endif %}
+
+      <h4>Opdrachten (progressieve oefenbank)</h4>
+      <ol>{% for a in materials.praktijkopdracht.opdrachten %}<li>{{ a }}</li>{% endfor %}</ol>
+      <p><em>{{ materials.praktijkopdracht.kruisverwijzingen }}</em></p>
+
+      <h4>Checkpoints</h4>
+      <table>
+        <thead><tr><th>Criterium</th><th>Behaald</th><th>Deels</th><th>Niet</th></tr></thead>
+        <tbody>{% for c in materials.praktijkopdracht.checkpointcriteria %}<tr><td>{{ c }}</td><td>☐</td><td>☐</td><td>☐</td></tr>{% endfor %}</tbody>
+      </table>
+    </section>
+
+    <section class="card">
+      <h2>{{ materials.beoordelingslijst.doctype }}</h2>
+      <p><strong>Knock-outcriteria:</strong> {{ materials.beoordelingslijst.knockoutcriteria }}</p>
+      <table>
+        <thead><tr><th>Competentie</th><th>1 — Onvoldoende</th><th>2 — NLQF 3</th><th>3 — NLQF 4</th></tr></thead>
+        <tbody>
+        {% for r in materials.beoordelingslijst.matrix %}
+          <tr><td>{{ r.competentie }}</td><td>{{ r["1_onvoldoende"] }}</td><td>{{ r["2_voldoende_nlqf3"] }}</td><td>{{ r["3_uitstekend_nlqf4"] }}</td></tr>
+        {% endfor %}
+        </tbody>
+      </table>
+    </section>
+
+    {% if materials.examemateriaal %}
+    <section class="card">
+      <h2>{{ materials.examemateriaal.doctype }}</h2>
+      <p><strong>Totale duur:</strong> {{ materials.examemateriaal.totale_duur }}</p>
+      <h3>{{ materials.examemateriaal.onderdeel_theorie.naam }} ({{ materials.examemateriaal.onderdeel_theorie.duur }} min)</h3>
+      <ul>{% for d in materials.examemateriaal.onderdeel_theorie.domeinen %}<li>{{ d }}</li>{% endfor %}</ul>
+      <h3>{{ materials.examemateriaal.onderdeel_find_error.naam }} ({{ materials.examemateriaal.onderdeel_find_error.duur }} min)</h3>
+      <p>Foutklassen: {{ materials.examemateriaal.onderdeel_find_error.foutklassen | join(", ") }}</p>
+      <h3>{{ materials.examemateriaal.onderdeel_praktijk.naam }} ({{ materials.examemateriaal.onderdeel_praktijk.duur }} min)</h3>
+      {% if materials.examemateriaal.onderdeel_praktijk.case %}
+        <p><strong>Case {{ materials.examemateriaal.onderdeel_praktijk.case.nr }} — {{ materials.examemateriaal.onderdeel_praktijk.case.name }}:</strong> {{ materials.examemateriaal.onderdeel_praktijk.case.context }}</p>
+        <p><em>Verplichte kernelementen:</em> {{ materials.examemateriaal.onderdeel_praktijk.case.elements }}</p>
+      {% endif %}
+      <h4>Knock-outcriteria</h4>
+      <ul>{% for k in materials.examemateriaal.knockoutcriteria %}<li>{{ k }}</li>{% endfor %}</ul>
+      <h4>Slagingsregels</h4>
+      <ul><li>NLQF 3: {{ materials.examemateriaal.slagingsregels.level3 }}</li><li>NLQF 4: {{ materials.examemateriaal.slagingsregels.level4 }}</li></ul>
+    </section>
+    {% endif %}
+  </main>
+
+  <footer class="footer">Gegenereerd met Cobot Course Composer · Review-markers vragen altijd om docentcontrole</footer>
+</body>
+</html>

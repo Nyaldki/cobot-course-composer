@@ -1,0 +1,69 @@
+# TRACK 3, Section 3.2 — Interchangeable visual identity sub-module A (SMEOT Hengelo).
+# Replace this whole FILE (protocol 3.6) when another institution adopts the platform.
+# STATUS: derived from Casper's Draft Visual.html v0.1; pending formal alignment with
+# the SMEOT corporate identity. Serves as fixed system baseline until confirmed.
+
+meta:
+  id: track3_style_smeot
+  module_type: visual_identity
+  status: draft_baseline
+
+identity:
+  institution: "SMEOT"
+  module_title: "Collaboratieve Robotica (Cobot)"
+  logo_asset: "[VERIFIED_ASSET: logo_smeot | Bijschrift: SMEOT-tenantlogo]"   # replace with Asset Library reference
+
+colors:
+  primary: "#1B2A4A"      # dark blue — titles, header bars, subheadings, question numbering
+  secondary: "#8A8183"    # gray — subtitles, metadata, supplementary context
+  surface: "#EAE7E6"      # light gray — tip boxes, info panels, answer fields
+  base: "#FFFFFF"         # white — page background
+  safety: "#C0392B"       # safety red — EXCLUSIVELY for safety warnings/danger boxes, never decorative
+
+typography:
+  typeface: "Segoe UI, Arial, sans-serif"
+  main_title_pt: 22       # bold
+  subheading_pt: 16       # bold
+  body_pt: 11
+  caption_pt: 10
+  header_footer_pt: 9
+
+layout:
+  page: "A4 portrait, 20 mm margins"
+  header_bar: "Donkerblauwe balk: instellingsnaam (SMEOT), modulenummer, documenttype, paginanummer."
+  footer: "Documenttype, versienummer, datum, paginatelling."
+  tips_box: "Praktische tips in een lichtgrijze kader."
+  safety_box: "Veiligheidswaarschuwingen altijd in een kader met rode omlijning."
+
+document_types:
+  informatieblad:
+    doc_type: "Document Type 1 / Template A"
+    max_length: "1 A4 per onderwerp"
+    sequence: [headerbar, topictitel, leerdoel in één zin, centrale illustratie met bijschrift, korte actiestappen, optionele tipkader, veiligheidskader (alléén bij veiligheidskritisch), standaard footer]
+  praktijkopdracht:
+    doc_type: "Document Type 2 / Template B"
+    sequence: [headerbar, titel met geschatte duur in minuten, metablok (leerdoel + materialen incl. pbm's), korte introductie, uitvoeringsstappen met invulruimte, compacte checkpointtabel (behaald/deels/not)]
+  toetsblad:
+    doc_type: "Document Type 3 / Template C"
+    sequence: [voorblad met vaste posities (naam, studentnummer, datum, examinator, duur, punten/oordeel), genummerde vragen met puntgewicht rechts, schrijfruimte, scheiding studentinstructies vs. examinatorrubric]
+
+language_rules:
+  target: "Nederlands — helder, volwassen, natuurlijk; direct en collegiaal; jij-vorm."
+  style: ["actieve stem", "gebiedende wijs als openend werkwoord ('Controleer de werkruimte')", "korte zinnen, geen passieve constructies", "geen betutteling en geen academisch jargon"]
+  keep_english: [TCP, "MoveJ (Move Joint)", "MoveL (Move Line)", "MoveC (Move Circle)", Blending, "Hand guiding", "Joint jogging", "Base frame", "Tool frame", "User frame", Waypoint, "Servo On", "Protective Stop", Payload, I/O]
+  dutch_terms: {gripper: grijper, "emergency stop": noodstop, part: werkstuk, "safety zone": veiligheidszone}
+  cross_referencing: "Herhaal vaste procedures niet; verwijs kort naar het kerninformatieblad, bijv. 'Zie Informatieblad: Veilig opstarten en afsluiten'."
+
+image_rules:
+  never_generate: ["echte besturingsschermen (Dr. Dart-menu's)", "exacte knoppenlayout teach pendant", "fysieke kabelaansluitingen controller", "elektrische bedradingschema's", "veiligheidskritische machineonderdelen"]
+  placeholder_format: "[VERIFIED_ASSET: <bestandsreferentie> | Bijschrift: <bijschrift>]"
+  allowed_concepts: ["minimale diagrammen van bewegingsconcepten (MoveJ vs MoveL, effect van blending, palletiseren)", "abstracte werkplekindelingen met veiligheidszones", "uniforme pictogrammen (taak, commando, TCP, input, output)"]
+  visual_spec: "Crispe minimalistische lijnstijl, witte achtergrond (#FFFFFF), primaire lijnen in #1B2A4A, steunvullingen in #EAE7E6, bewegings/waarschuwingsaccenten uitsluitend in #C0392B, geen decoratie, slagschaduwen of onleesbare tekst."
+
+checklist_before_print:
+  - "Afstemming op de visuele identiteit"
+  - "Consistentie kleuren en lettertypen"
+  - "Leesbaarheid op doelniveau"
+  - "Voldoende ruimte voor beelden en antwoorden"
+  - "Technische correctheid"
+  - "Eenduidige veiligheidsinstructies"

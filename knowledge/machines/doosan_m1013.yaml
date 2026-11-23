@@ -1,0 +1,67 @@
+# TRACK 1, Section 1.4 — Interchangeable machine sub-module A.
+# Replace this whole FILE when switching to another cobot brand (protocol 1.6).
+# Do NOT edit knowledge/track1_core.yaml for a machine swap.
+
+meta:
+  id: machine_doosan_m1013
+  module_type: machine
+  status: active
+  source: "Doosan M1013 manual via Dr. Dart Platform, version 3.5.0"
+  institution_context: "SMEOT Hengelo"
+
+robot:
+  model: "Doosan Robotics M1013"
+  series: "M-series, six-axis collaborative robot"
+  traits: "Six integrated torque sensors (one per joint) for high collision sensitivity and accurate force control."
+
+specifications:
+  axes: "6 axes, 6 integrated torque sensors"
+  payload_kg: 10
+  reach_mm: 1300
+  repeatability_mm: "±0.05 (ISO 9283)"
+  max_tcp_speed_ms: 1.0
+  arm_weight_kg: 33
+  ip_rating: "IP54"
+  joint_ranges:
+    J1_J2: {range_deg: "±360", speed_deg_s: 120}
+    J3: {range_deg: "±160", speed_deg_s: 180}
+    J4_J5_J6: {range_deg: "±360", speed_deg_s: 225}
+  flange_io: "6 digital inputs, 6 digital outputs (24V DC power, max 3 A)"
+  controller_io: "16 digital inputs, 16 digital outputs (+ analog I/O channels)"
+  on_arm_control: "Cockpit module on the wrist for hand guiding and direct waypoint saving"
+
+platform:
+  control_interface: "Dr. Dart Platform (teach pendant)"
+  visual_programming: "Task Builder (Task Editor) — visual block programming"
+  textual_programming: "Task Writer — DRL (Doosan Robot Language), Python-like syntax"
+  tool_settings: "Tool Settings incl. Smart Setup for automated weight and Center of Gravity measurement"
+  io_monitor: "Live I/O monitor (signal log) for Controller I/O and Flange I/O in real time"
+
+brand_terms:   # brand-specific names required by replacement protocol 1.6
+  move_joint: "Move J"
+  move_line: "Move L"
+  move_circle: "Move C"
+  blending: "Blending"
+  wait: "Wait"
+  subroutine: "Sub-Program"
+  programming_language: "DRL"
+
+procedures:
+  startup:
+    - "Inspecteer de omgeving en maak de werkruimte vrij."
+    - "Schakel de voeding van de controller in."
+    - "Wacht tot de teach pendant volledig is opgestart."
+    - "Ontgrendel en controleer de noodstop indien ingedrukt."
+    - "Activeer de motorkracht via de Servo On-knop."
+  shutdown:
+    - "Stop de lopende taak."
+    - "Breng de robot naar de Home-posities."
+    - "Schakel Servo Off."
+    - "Sluit het besturingssysteem af via het menu van de teach pendant."
+    - "Schakel daarna pas de controller uit."
+
+workshop_config:   # local SMEOT details — only included when SMEOT context is active
+  gripper: "Electric OnRobot two-finger gripper (RG2/RG6 series)"
+  push_buttons: "Three physical push buttons (red, blue, white) wired to the controller; freely assignable in student tasks."
+  force_limit_n: 25
+  safety_zone: "Werkruimte"
