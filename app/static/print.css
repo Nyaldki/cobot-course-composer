@@ -1,0 +1,31 @@
+/* Print layout for generated materials — Track 3, Track 3.3 rules:
+   A4 portrait, wide margins, orange/red safety boxes stay red, page background white. */
+@media print {
+  @page {
+    size: A4 portrait;
+    margin: 20mm;
+  }
+
+  body { background: #fff; font-size: 11pt; }
+  .topbar { margin: -20mm -20mm 10mm -20mm; padding: 10px 20mm; }
+  .topbar .sub a { display: none; }
+  main.page { max-width: none; padding: 0; }
+
+  .card {
+    border: none;
+    page-break-inside: avoid;
+    margin-bottom: 12mm;
+  }
+
+  h1 { font-size: 22pt; }
+  h2 { font-size: 16pt; }
+  h3 { font-size: 13pt; }
+
+  table { font-size: 10pt; }
+  th { background: #1B2A4A !important; color: #FFFFFF !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+
+  .tipbox { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .safetybox { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+
+  footer.footer { display: none; }
+}
