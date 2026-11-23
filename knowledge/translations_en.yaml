@@ -1,0 +1,212 @@
+timeblocks:
+- Welcome and safety check
+- Direct instruction (Template A)
+- Coached practice (Template B, part 1)
+- Break
+- Independent practice (Template B, part 2)
+- Reflection and assessment (Template D) + shutdown procedure
+labels:
+  lesson_program: Lesson program (240 min)
+  learning_objective: Learning objective
+  subjects: Subjects
+  safety_principle: Key safety principle (Track 1)
+  tip: Tip
+  warning: Always simulate new programs first and test at low speed with one hand on the emergency stop.
+  tip_text: Name your waypoints with fixed names such as Above_Pick, Pick, Place, Home.
+  materials: Materials
+  estimated_duration: 'Estimated duration: 240 min (lesson day) / 100-150 min (practice blocks)'
+  intro_1: 'Today you will work on:'
+  intro_2: 'Expected result:'
+  mandatory_preparation: 'Mandatory preparation: before starting, write a short work plan naming your motion trajectory (waypoints), motion commands, and safety measures.'
+  assignments: Assignments (progressive practice bank)
+  cross_references: 'See Information sheet: Safe startup and shutdown. See Information sheet: Manual motion (jogging and Hand guiding).'
+  checkpoints: Checkpoints
+  achieved: Achieved
+  partly: Partly
+  not_achieved: Not achieved
+  knockout: 'Knock-out criteria: all safety knock-out criteria must be met without exception: workspace inspected; emergency stop verified before motor power; no unauthorized modification of safety settings;
+    safe shutdown per procedure.'
+  exam_link: Exam alignment
+  total_duration: Total duration
+doctypes:
+  info_sheet: Information sheet (Document type 1 / Template A)
+  practical: Practical assignment (Document type 2 / Template B)
+  assessment: Assessment rubric (Template D)
+  exam: Examination sheet (Document type 3 / Template C)
+  week_assessment: Assessment rubric (Template D) — week
+  intro_note: Theory recap and exam preparation (see examination sheet)
+checkpoint_criteria:
+- Workspace inspected and emergency stop tested before Servo On
+- Waypoints clearly named (Home, Pick, Place)
+- Program simulated / tested at low speed first
+- Motion validation correct (MoveL without blending at the pick point)
+- Safe shutdown according to procedure
+rubric:
+  competencies:
+  - System setup & calibration
+  - Programming & process logic
+  - Troubleshooting & diagnostics
+  - Safety, documentation & craftsmanship
+weeks:
+  1:
+    theme: Safety, system components, and manual operation
+    objective: The student powers the cobot safely on and off and moves the arm manually to an indicated position.
+    topics:
+    - Industrial robot vs. cobot; the five fixed main components
+    - Safety standards (ISO 10218-1/2:2025) and the four collaborative modes
+    - Emergency stop vs. Protective Stop; five protection layers
+    - Joints J1 through J6 and X/Y/Z; jogging and Hand guiding
+    assignments:
+    - C1.1 Safely switching on and off following the fixed procedure
+    - C1.2 Exploring each joint J1 through J6 individually (Joint jogging)
+    - C1.3 Cartesian jogging along X, Y, and Z
+    - C1.4 Hand guiding the arm to a mark on the table
+    - C1.5 Saving individual waypoints with a pointer pin
+    exam_link: 'Theory: system components, safe startup and shutdown, collaborative modes, risk assessment.'
+  2:
+    theme: Motion principles and motion commands
+    objective: The student applies MoveJ, MoveL, and MoveC purposefully and recognizes the effect of blending and singularity.
+    topics:
+    - MoveJ vs. MoveL vs. MoveC (Move Joint, Move Line, Move Circle)
+    - Speed, acceleration, and Blending
+    - Singularity during linear moves
+    - Switching between MoveJ and MoveL at the right moment
+    assignments:
+    - C2.1 Drawing a straight line with MoveL
+    - C2.2 Tracing a square as one connected motion track
+    - C2.3 Drawing a circle with MoveC
+    - C2.4 Combining fast MoveJ transfers with precise MoveL approaches
+    - C2.5 Smoothing motion with blending
+    exam_link: 'Theory: motion control and manual operation (MoveJ/MoveL/MoveC, blending, singularity).'
+  3:
+    theme: Gripping and repetitive production logic
+    objective: The student builds a stable pick-and-place cycle with gripper and a Repeat loop.
+    topics:
+    - Standard pick-and-place trajectory (Home, Approach, Pick, Retreat, Place)
+    - 'Grippers: two/three-finger, vacuum, magnetic'
+    - Repeat/loop with a counter; anti-cyclic design
+    - Calibrating TCP and payload correctly (Smart Setup)
+    assignments:
+    - C3.1 Single pick-and-place
+    - C3.2 Moving parts to multiple drop-off locations with approach and retreat points
+    - C3.3 Repeat loop for ten cycles
+    - C3.4 Stacking five blocks via a Z-offset
+    exam_link: 'Theory: kinematics and coordinates (J1-J6, X/Y/Z, TCP, payload, Base/Tool/User frame).'
+  4:
+    theme: Grids, crate filling, and palletizing
+    objective: The student fills a grid and a mini-pallet using mathematical offsets in X, Y, and Z.
+    topics:
+    - 'Matrix logic: rows and columns across X and Y'
+    - 'Palletizing: fill a layer across X/Y, then step up in Z per layer'
+    - Subroutines for gripping and releasing
+    - Deliberately shortening cycle time without compromising safety
+    assignments:
+    - C4.1 Filling a crate with twelve bottles in rows and columns (X and Y)
+    - C4.2 Multi-layer palletizing
+    exam_link: 'Practical case profiles 2 (palletizing) and 3 (crate filling): mandatory core elements.'
+  5:
+    theme: Spatial reasoning and coordinate frames
+    objective: The student applies the Tool frame and User frame in challenging mechanical actions.
+    topics:
+    - Rotations Rx, Ry, and Rz in practice
+    - Tool frame when working along an angle
+    - User frame on a crooked or angled tray
+    - Managing singularity behind an obstacle
+    assignments:
+    - C5.1 Unscrewing a bottle cap (rotation via J6/Rz)
+    - C5.2 Pouring water from one cup into another (tilting via Rx/Ry)
+    - C5.3 Inserting a pin into an angled hole (Tool frame)
+    - C5.4 Working on a crookedly placed tray (User frame)
+    - C5.5 Reaching behind an obstacle while managing singularity
+    exam_link: 'Practical case profiles 5 (precision assembly) and 6 (angled plane); Level 4 theory: coordinate transformations.'
+  6:
+    theme: I/O, integration, and troubleshooting
+    objective: The student interfaces external signals, writes modular programs, and systematically resolves a stop.
+    topics:
+    - '24V DC I/O: inputs, outputs, Flange I/O vs. Controller I/O'
+    - Wait/If-Else with sensors and push buttons
+    - Handshaking with a machine (machine tending)
+    - Systematic troubleshooting using the I/O monitor and fault log
+    - 'DRL/Python: from visual program to textual code'
+    assignments:
+    - C6.1 Starting and pausing tasks via wired push buttons (Input + If)
+    - C6.2 Switching an indicator lamp (Output)
+    - C6.3 Sensor-triggered waiting (Wait)
+    - C6.4 Color sorting using a sensor or camera (If/Else)
+    - C6.5 Modular programming with grip and release subroutines
+    - C6.6 Cleaning up and restructuring messy code
+    - C6.7 Calibrating a heavy workpiece (payload)
+    - C6.8 Systematic troubleshooting after a stop
+    - C6.9 Speed reduction via safety zones
+    - C6.10 Full machine tending with handshaking
+    - C6.11 Translating a task into textual code (DRL/Python)
+    exam_link: 'Level 4 theory: connectivity, protocols, error handling; exam component 2 (Find the Error).'
+  7:
+    theme: Certification exam (4 hours, 240 minutes)
+    objective: 'The candidate completes the full certification exam: theory, troubleshooting, and a practical case.'
+    assignments:
+    - 'C7.1 Exam preparation: summary of the theory domains'
+    - C7.2 Find-the-Error dry run with the four fault classes
+    exam_link: Complete examination blueprint including knock-out criteria and rubric (Track 2, section 2.4).
+exam:
+  theory:
+  - Industrial robots vs. cobots and the core functions of all system components
+  - Safe startup, shutdown, and safety standards (ISO 10218-1/2:2025, the four collaborative modes, emergency stop vs. Protective Stop, risk assessment)
+  - Kinematics and coordinate systems (J1-J6, X/Y/Z, TCP, payload, Base, Tool, and User frames)
+  - Motion control and manual operation (jogging, hand guiding, Move Joint, Move Line, Move Circle, blending, singularity)
+  - Programming logic and structure (Wait, Repeat, If/Else, subroutines, variables, tidy program management)
+  - Connectivity and diagnostics (24V DC digital and analog I/O, sensors, machine handshaking, systematically resolving stops)
+  theory_level4:
+  - coordinate transformations
+  - error-handling logic
+  - digital simulation
+  - foundational industrial communication protocols
+  find_error_grading: 'Level 3: resolves the fault methodically using the manual and standard checks. Level 4: reads raw diagnostic data (I/O monitor, fault log) directly, isolates the root cause without
+    deleting existing code, and validates the fix.'
+  case_context:
+    1: Loading and unloading a simulated CNC machine or press.
+    2: Fully automated stacking of products onto a mini-pallet across multiple layers.
+    3: Distributing products into a grid (rows and columns) with a push button for a fresh crate.
+    4: Separating products into distinct drop-off zones based on an external sensor or camera signal.
+    5: Picking up and accurately fitting or rotating components with specific orientation requirements.
+    6: Handling workpieces from a skewed tray or a fixture mounted at an angle.
+    7: Taking over, restructuring, and speeding up a slow, messy, and error-prone existing production program.
+  case_elements:
+    1: I/O handshaking (incoming ready signal and outgoing start signal), safe entry and exit via Move Line, return to Home.
+    2: Repeat loops, mathematical offsets in X, Y, and Z, clean subroutines for gripping and releasing, counting until pallet full.
+    3: Matrix logic in X and Y, push-button inputs for start, pause, and crate swap, status indicator via digital output.
+    4: Live input reading, If/Else branching, Wait command on product detection, reliable cycle repetition.
+    5: Controlled rotation and tilting (Rx, Ry, Rz), switching between Move Joint and slow Move Line without blending, accurate TCP calibration.
+    6: Independently defining and applying a User frame and/or Tool frame, collision-free approach and retreat points.
+    7: Cleaning up naming conventions and subroutines, configuring responsible blending and speed limits, adding basic error handling and handover documentation.
+  shell:
+  - Industrial brief with concrete product specifications
+  - Available hardware and constraints
+  - Mandatory preparation check (work plan and safety analysis)
+  - Functional final demonstration of a continuous production cycle
+  - Oral explanation by the candidate justifying safety and programming choices
+  knockout:
+  - Workspace not demonstrably inspected and cleared prior to operation
+  - Emergency stop functionality not verified before engaging motor power
+  - Safety settings bypassed or modified without authorization
+  - System not shut down safely according to procedure
+  pass3: At least score 2 on every single competency.
+  pass4: Score 3 on at least three of the four competencies (mandatorily including Programming & Process Logic and Troubleshooting & Diagnostics), and no competency below 2.
+  table_note: Score 1 = insufficient, 2 = sufficient (Level 3), 3 = excellent (Level 4)
+rubric_cells:
+  setup:
+    1: Needs repeated guidance; gripper, TCP, payload, or wiring are configured incorrectly or sloppily.
+    2: Mounts the gripper, wires basic I/O properly, and calibrates TCP and payload independently and accurately.
+    3: Demonstrably optimizes workspace layout and Center of Gravity settings for ergonomics, reach, and cycle efficiency.
+  programming:
+    1: Program runs unstably; loops, frames, or I/O blocks contain errors or lack structure.
+    2: Combines MoveJ/MoveL, loops, and working I/O control accurately into a stable, safe production cycle.
+    3: Builds modularly with clean subroutines, clear naming, deliberate blending, and active error handling.
+  troubleshooting:
+    1: Loses overview, guesses randomly, or deletes parts of the existing program without analysis.
+    2: Uses the manual and structured checks to locate and fix the fault within the allotted time.
+    3: Directly analyzes raw data (I/O monitor, fault logs, measurements), isolates the root cause purposefully, and identifies preventive measures.
+  craft:
+    1: Works messily, cannot explain technical decisions, or fails to deliver a usable program handover.
+    2: Works with discipline and safety, uses clear folder and task names, and explains system operation clearly to a colleague.
+    3: Delivers a complete, hand-over-ready cell with clean inline documentation and substantiates choices to the client.

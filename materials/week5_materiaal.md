@@ -1,6 +1,6 @@
 # Week 5: Ruimtelijk inzicht en coördinaatframes
 
-**Programma:** Cobot Course — zeven weken, één lesdag per week (240 minuten)  
+**Cobot Course — zeven weken, één lesdag per week (240 minuten):**   
 **Niveau:** NLQF 4  
 **Machine (Track 1):** Doosan Robotics M1013 — SMEOT Hengelo  
 
@@ -33,13 +33,11 @@
 
 > ⚠️ Simuleer nieuwe programma's eerst en test daarna op lage snelheid met een hand aan de noodstop.
 
-> 💡 **Tip:** Benoem je waypoints met vaste namen zoals Above_Pick, Pick, Place, Home.
+> 💡 Benoem je waypoints met vaste namen zoals Above_Pick, Pick, Place, Home.
 
 ## Praktijkopdracht (Document Type 2 / Template B) — Week 5: Ruimtelijk inzicht en coördinaatframes
 
-**Niveau:** NLQF 4 · **Geschatte duur:** 240 min (lesdag) / 100-150 min (praktijkblokken)
-
-**Materiaal:** Doosan Robotics M1013 met Electric OnRobot two-finger gripper (RG2/RG6 series); Three physical push buttons (red, blue, white) wired to the controller; freely assignable in student tasks.
+**Niveau:** NLQF 4 · 240 min (lesdag) / 100-150 min (praktijkblokken)
 
 Vandaag werk je aan: ruimtelijk inzicht en coördinaatframes.
 Verwacht resultaat: je past tool frame en user frame toe op mechanische uitdagingen.
@@ -57,7 +55,8 @@ Verwacht resultaat: je past tool frame en user frame toe op mechanische uitdagin
 
 ### Checkpoints
 
-| Criterium | Behaald | Deels | Niet behaald |
+
+|  | Behaald | Deels | Niet behaald |
 |---|---|---|---|
 | Werkruimte gecontroleerd en noodstop getest vóór Servo On | ☐ | ☐ | ☐ |
 | Waypoints herkenbaar benoemd (Home, Pick, Place) | ☐ | ☐ | ☐ |
@@ -65,11 +64,11 @@ Verwacht resultaat: je past tool frame en user frame toe op mechanische uitdagin
 | Bewegingsvalidaties correct (MoveL zonder blending op pickpunt) | ☐ | ☐ | ☐ |
 | Veilig afgesloten volgens procedure | ☐ | ☐ | ☐ |
 
-## Beoordelingslijst (Template D) — week 5
+## Beoordelingslijst (Template D) — Week 5 — beoordeling
 
-> **Knock-outcriteria:** Alle veiligheids-knock-outcriteria moeten zonder uitzondering worden gehaald: werkruimte gecontroleerd; noodstop geverifieerd vóór motorpower; geen onbevoegde wijziging van veiligheidsinstellingen; veilige afsluiting volgens procedure.
+> **Alle veiligheids-knock-outcriteria moeten zonder uitzondering worden gehaald: werkruimte gecontroleerd; noodstop geverifieerd vóór motorpower; geen onbevoegde wijziging van veiligheidsinstellingen; veilige afsluiting volgens procedure.**
 
-| Competentie | 1 — Onvoldoende | 2 — NLQF 3 | 3 — NLQF 4 |
+| Competentie | 1 | 2 — NLQF 3 | 3 — NLQF 4 |
 |---|---|---|---|
 | Systeemopbouw & kalibratie | Herhaalde begeleiding nodig; grijper, TCP, payload of bedrading slordig/fout. | Monteert grijper, bedraadt basis-I/O en kalibreert TCP en payload zelfstandig en nauwkeurig. | Optimaliseert werkplekindeling en zwaartepuntinstelling voor ergonomie, bereik en cyclus. |
 | Programmeren & proceslogica | Programma instabiel; lussen, frames of I/O bevatten fouten. | Combineert MoveJ/MoveL, lussen en werkende I/O tot een stabiele, veilige cyclus. | Modulair met nette subroutines, duidelijke naamgeving, bewuste blending en actieve foutafhandeling. |

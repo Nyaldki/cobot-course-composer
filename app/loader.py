@@ -30,11 +30,24 @@ class Semester:
     track3: dict
     curriculum: dict
     machines: list = field(default_factory=list)
+    translations_en: dict | None = None
 
 
 def _load_yaml(path: Path) -> dict:
     with open(path, encoding="utf-8") as fh:
         return yaml.safe_load(fh)
+
+
+def load_translations() -> dict:
+    """English overlay; numeric keys are normalized to int for uniform lookup."""
+    data = _load_yaml(KNOWLEDGE_DIR / "translations_en.yaml")
+    data["weeks"] = {int(k): v for k, v in data["weeks"].items()}
+    for section in ("case_context", "case_elements"):
+        data["exam"][section] = {int(k): v for k, v in data["exam"][section].items()}
+    data["rubric_cells"] = {
+        comp: {int(k): v for k, v in cells.items()} for comp, cells in data["rubric_cells"].items()
+    }
+    return data
 
 
 def list_machine_modules() -> list[dict]:
@@ -76,6 +89,7 @@ def load_semester(machine_id: str | None = None) -> Semester:
         track3=_load_yaml(KNOWLEDGE_DIR / "track3_style_smeot.yaml"),
         curriculum=_load_yaml(KNOWLEDGE_DIR / "curriculum.yaml"),
         machines=machines,
+        translations_en=load_translations(),
     )
 
 

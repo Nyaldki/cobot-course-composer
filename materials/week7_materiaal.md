@@ -1,6 +1,6 @@
 # Week 7: Certificeringsexamen (4 uur, 240 minuten)
 
-**Programma:** Cobot Course — zeven weken, één lesdag per week (240 minuten)  
+**Cobot Course — zeven weken, één lesdag per week (240 minuten):**   
 **Niveau:** 3-4  
 **Machine (Track 1):** Doosan Robotics M1013 — SMEOT Hengelo  
 
@@ -19,7 +19,7 @@
 **Leerdoel:** De kandidaat doorloopt het volledige certificeringsexamen: theorie, storing zoeken en praktijkcase.
 
 ### Onderwerpen
-- Theorieherhaling en examen voorbereiding (zie examemateriaal)
+- Zie examemateriaal week 7
 
 ### Belangrijkste veiligheidsprincipe (Track 1)
 
@@ -27,13 +27,11 @@
 
 > ⚠️ Simuleer nieuwe programma's eerst en test daarna op lage snelheid met een hand aan de noodstop.
 
-> 💡 **Tip:** Benoem je waypoints met vaste namen zoals Above_Pick, Pick, Place, Home.
+> 💡 Benoem je waypoints met vaste namen zoals Above_Pick, Pick, Place, Home.
 
 ## Praktijkopdracht (Document Type 2 / Template B) — Week 7: Certificeringsexamen (4 uur, 240 minuten)
 
-**Niveau:** 3-4 · **Geschatte duur:** 240 min (lesdag) / 100-150 min (praktijkblokken)
-
-**Materiaal:** Doosan Robotics M1013 met Electric OnRobot two-finger gripper (RG2/RG6 series); Three physical push buttons (red, blue, white) wired to the controller; freely assignable in student tasks.
+**Niveau:** 3-4 · 240 min (lesdag) / 100-150 min (praktijkblokken)
 
 Vandaag werk je aan: certificeringsexamen (4 uur, 240 minuten).
 Verwacht resultaat: de kandidaat doorloopt het volledige certificeringsexamen: theorie, storing zoeken en praktijkcase.
@@ -54,7 +52,8 @@ In-/uitladen van gesimuleerde CNC-machine of pers.
 
 ### Checkpoints
 
-| Criterium | Behaald | Deels | Niet behaald |
+
+|  | Behaald | Deels | Niet behaald |
 |---|---|---|---|
 | Werkruimte gecontroleerd en noodstop getest vóór Servo On | ☐ | ☐ | ☐ |
 | Waypoints herkenbaar benoemd (Home, Pick, Place) | ☐ | ☐ | ☐ |
@@ -62,11 +61,11 @@ In-/uitladen van gesimuleerde CNC-machine of pers.
 | Bewegingsvalidaties correct (MoveL zonder blending op pickpunt) | ☐ | ☐ | ☐ |
 | Veilig afgesloten volgens procedure | ☐ | ☐ | ☐ |
 
-## Beoordelingslijst (Template D) — week 7
+## Beoordelingslijst (Template D) — Week 7 — beoordeling
 
-> **Knock-outcriteria:** Alle veiligheids-knock-outcriteria moeten zonder uitzondering worden gehaald: werkruimte gecontroleerd; noodstop geverifieerd vóór motorpower; geen onbevoegde wijziging van veiligheidsinstellingen; veilige afsluiting volgens procedure.
+> **Alle veiligheids-knock-outcriteria moeten zonder uitzondering worden gehaald: werkruimte gecontroleerd; noodstop geverifieerd vóór motorpower; geen onbevoegde wijziging van veiligheidsinstellingen; veilige afsluiting volgens procedure.**
 
-| Competentie | 1 — Onvoldoende | 2 — NLQF 3 | 3 — NLQF 4 |
+| Competentie | 1 | 2 — NLQF 3 | 3 — NLQF 4 |
 |---|---|---|---|
 | Systeemopbouw & kalibratie | Herhaalde begeleiding nodig; grijper, TCP, payload of bedrading slordig/fout. | Monteert grijper, bedraadt basis-I/O en kalibreert TCP en payload zelfstandig en nauwkeurig. | Optimaliseert werkplekindeling en zwaartepuntinstelling voor ergonomie, bereik en cyclus. |
 | Programmeren & proceslogica | Programma instabiel; lussen, frames of I/O bevatten fouten. | Combineert MoveJ/MoveL, lussen en werkende I/O tot een stabiele, veilige cyclus. | Modulair met nette subroutines, duidelijke naamgeving, bewuste blending en actieve foutafhandeling. |
@@ -90,7 +89,7 @@ In-/uitladen van gesimuleerde CNC-machine of pers.
 
 ### Onderdeel 2: Find the Error / Troubleshooting (20-30)
 
-**Foutklassen:** hardware- en I/O-fouten, kalibratie- en instelfouten, bewegings- en veiligheidsfouten, logische programmafouten
+**Foutklassen (1) hardware- en I/O-fouten, (2) kalibratie- en instelfouten, (3) bewegings- en veiligheidsfouten, (4) logische programmafouten**
 
 **Beoordeling:** Level 3: methodisch met handleiding en standaardcontroles. Level 4: directe ruwe diagnosegegevens, root cause zonder code verwijderen, fix valideren.
 

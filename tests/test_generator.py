@@ -131,3 +131,44 @@ def test_api_generate():
 def test_api_generate_invalid_week():
     response = client.post("/api/generate?week=99")
     assert response.status_code == 400
+
+
+# --- English rendering ---
+
+def test_english_info_sheet(sem):
+    sheet = info_sheet(sem, 1, lang="en")
+    assert sheet["doctype"] == "Information sheet (Document type 1 / Template A)"
+    assert sheet["titel"] == "Week 1: Safety, system components, and manual operation"
+    assert sheet["onderwerpen"][0].startswith("Industrial robot vs. cobot")
+    assert sheet["veiligheidskader"].startswith("A cobot is never")
+
+
+def test_english_practical_assignment(sem):
+    assignment = practical_assignment(sem, 3, lang="en")
+    assert assignment["opdrachten"][0].startswith("C3.1 Single pick-and-place")
+    assert "work plan" in assignment["voorbereiding_verplicht"]
+
+
+def test_english_rubric(sem):
+    sheet = assessment_sheet(sem, 5, lang="en")
+    assert sheet["matrix"][0]["competentie"] == "System setup & calibration"
+    assert sheet["matrix"][0]["2_voldoende_nlqf3"].startswith("Mounts the gripper")
+
+
+def test_english_exam_materials(sem):
+    materials = exam_materials(sem, 7, case_profile=2, lang="en")
+    assert materials["onderdeel_praktijk"]["case"]["context"].startswith("Fully automated stacking")
+    assert materials["slagingsregels"]["level4"].startswith("Score 3 on at least three")
+
+
+def test_english_via_api():
+    response = client.post("/api/generate?week=2&lang=en")
+    assert response.status_code == 200
+    body = response.json()
+    assert body["informatieblad"]["titel"] == "Week 2: Motion principles and motion commands"
+
+
+def test_dutch_still_default_via_api():
+    response = client.post("/api/generate?week=2")
+    body = response.json()
+    assert body["informatieblad"]["titel"].startswith("Week 2: Bewegingsprincipes")

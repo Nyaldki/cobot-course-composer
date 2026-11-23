@@ -108,11 +108,12 @@ async def generate(
     level: str | None = None,
     machine_id: str | None = None,
     case_profile: int | None = None,
+    lang: str = "nl",
 ):
     sem = load_semester(machine_id)
     try:
         return generate_week(
-            sem, week, level=level, machine_id=machine_id, case_profile=case_profile
+            sem, week, level=level, machine_id=machine_id, case_profile=case_profile, lang=lang
         )
     except ValueError as exc:
         return JSONResponse({"error": str(exc)}, status_code=400)
