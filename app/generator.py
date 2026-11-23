@@ -59,7 +59,7 @@ def info_sheet(sem: Semester, week_number: int) -> dict:
         "titel": f"Week {week_number}: {week['theme']}",
         "leerdoel": week["learning_objective"],
         "onderwerpen": week.get("topics", ["Theorieherhaling en examen voorbereiding (zie examemateriaal)"]),
-        "veiligheidskader": sem.track1_core["safety"]["principle"],
+        "veiligheidskader": sem.track1_core["safety"].get("principle_nl", sem.track1_core["safety"]["principle"]),
         "waarschuwing": "Simuleer nieuwe programma's eerst en test daarna op lage snelheid met een hand aan de noodstop.",
         "tip": "Benoem je waypoints met vaste namen zoals Above_Pick, Pick, Place, Home.",
         "toc_referenties": week.get("info_sheets_referenties", sem.curriculum["defaults"]["info_sheets"]) if week_number == 1 else [f"Zie Informatieblad: week {week_number} onderwerpen"],

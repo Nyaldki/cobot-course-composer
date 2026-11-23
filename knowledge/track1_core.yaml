@@ -39,6 +39,7 @@ safety:
     - "ISO 10218-2:2025 (requirements for robot systems and integration)"
     - "Incorporates the former ISO/TS 15066:2016 guidelines"
   principle: "A cobot is never inherently safe on its own; a risk assessment must cover arm, tooling, workpiece, process, and human proximity."
+  principle_nl: "Een cobot is nooit automatisch veilig op zichzelf; een risicobeoordeling dekt altijd de combinatie van arm, gereedschap, werkstuk, proces en de nabijheid van mensen."
   collaboration_modes:
     - {name: "Safety-rated Monitored Stop", nl: "Veiligheidstoegestane bewaakte stop", desc: "Robot stops controlled when a person enters the shared workspace; resumes when clear."}
     - {name: "Hand Guiding", nl: "Handgeleide beweging", desc: "Operator moves the arm by hand via an enabling switch with strictly limited speed and force."}
